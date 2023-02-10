@@ -27,3 +27,7 @@ yarn-error.log*
 .prettierrc.js
 package-lock.json
 package.json
+.gitignore
+.idea
+.env
+.env.production
