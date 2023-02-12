@@ -5,14 +5,19 @@ import { NavBar } from '../NavBar'
 import { Footer } from '../Footer'
 
 const LayoutContainer = styled('div')(() => ({
+  width: '100%',
+  height: '100%',
+  overflowX: 'hidden',
+}))
+const Content = styled('div')(() => ({
   maxWidth: 1320,
   margin: 'auto',
 }))
 
 export const Layout: FC<{ children: ReactNode }> = ({ children }) => (
-  <React.Fragment>
+  <LayoutContainer>
     <NavBar />
-    <LayoutContainer>{children}</LayoutContainer>
+    <Content>{children}</Content>
     <Footer />
-  </React.Fragment>
+  </LayoutContainer>
 )

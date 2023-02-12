@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
-import { IconButton, styled } from '@mui/material'
+import { Drawer, IconButton, styled } from '@mui/material'
 
 import { Button } from '../Button'
 import { Link } from '../../enums'
@@ -141,18 +141,19 @@ export const NavBar = () => {
           <Burger />
         </IconButton>
       </MobileNavBarActions>
-      <MobileMenu
-        open={open}
-        close={handleClose}
-        items={[
-          { to: Link.main, value: 'Головна' },
-          { to: Link.price, value: 'Вартість' },
-          { to: Link.individually, value: 'Індивідуально' },
-          { to: Link.about, value: 'Про компанію' },
-          { to: Link.faq, value: 'FAQ' },
-          { to: Link.contact, value: 'Контакти' },
-        ]}
-      />
+      <Drawer anchor={'left'} open={open} onClose={handleClose}>
+        <MobileMenu
+          close={handleClose}
+          items={[
+            { to: Link.main, value: 'Головна' },
+            { to: Link.price, value: 'Вартість' },
+            { to: Link.individually, value: 'Індивідуально' },
+            { to: Link.about, value: 'Про компанію' },
+            { to: Link.faq, value: 'FAQ' },
+            { to: Link.contact, value: 'Контакти' },
+          ]}
+        />
+      </Drawer>
     </MobileNavBarWrapper>
   )
 }
