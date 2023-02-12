@@ -1,6 +1,8 @@
 import React, { ChangeEvent, FC, FormEvent, useCallback, useState } from 'react'
 import { Modal, styled, TextField, Button } from '@mui/material'
 import axios from 'axios'
+import { toast } from 'react-toastify'
+import { isMobile } from '../../utils'
 
 interface ModalProps {
   open: boolean
@@ -13,11 +15,11 @@ const ModalContainer = styled('div')(() => ({
   padding: 20,
   border: '3px solid #F6EC00',
   borderRadius: 20,
-  width: 500,
+  width: `${isMobile() ? '300px' : '500px'}`,
 }))
 const ModalTitle = styled('div')(() => ({
   color: '#6ec1e4',
-  fontSize: 40,
+  fontSize: `${isMobile() ? '30px' : '40px'}`,
   margin: 10,
 }))
 const ModalSubtitle = styled('div')(() => ({
@@ -73,6 +75,7 @@ export const ModalPopup: FC<ModalProps> = ({ open, closeModal }) => {
         text: mail,
       })
 
+      toast.success('Ваш запит відправлено', { theme: 'colored' })
       closeModal(false)
     },
     [closeModal, name, tell],

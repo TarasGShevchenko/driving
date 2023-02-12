@@ -43,7 +43,7 @@ const anim = keyframes`
 `
 
 const ButtonContainer = styled('button')(() => ({
-  margin: '5px 20px',
+  margin: '5px 30px',
   fontSize: 13,
   fontWeight: 600,
   color: '#F6EC00',

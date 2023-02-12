@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
-import { styled } from '@mui/material'
+import { IconButton, styled } from '@mui/material'
 
 import { Button } from '../Button'
 import { Link } from '../../enums'
+import { isMobile } from '../../utils'
+import { ReactComponent as Burger } from '../../assets/icons/menu-burger.svg'
+import { ReactComponent as Phone } from '../../assets/icons/phone.svg'
+import { MobileMenu } from '../MobileMenu/MobileMenu'
 
 const NavBarWrapper = styled('div')<{ main: boolean }>(({ main }) => ({
   position: 'relative',
@@ -64,10 +68,36 @@ const NavbarInfoContent = styled('div')(() => ({
     lineHeight: '6px',
   },
 }))
+const MobileNavBarWrapper = styled('div')(() => ({
+  position: 'relative',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  height: '100%',
+  backgroundColor: '#1b1b1b',
+  zIndex: 9,
+  padding: '4px 16px',
+}))
 
-export const Header = () => {
+const MobileNavBarActions = styled('div')(() => ({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+}))
+
+export const NavBar = () => {
+  const mobileDevice = isMobile()
   const location = useLocation()
-  return (
+  const [open, setOpen] = useState(false)
+
+  const handleOpen = useCallback(() => {
+    setOpen(true)
+  }, [])
+  const handleClose = useCallback(() => {
+    setOpen(false)
+  }, [])
+
+  return !mobileDevice ? (
     <NavBarWrapper main={location.pathname === Link.main}>
       <NavBarContainer>
         <NavBarLinks>
@@ -100,5 +130,29 @@ export const Header = () => {
         </NavbarInfo>
       </NavBarContainer>
     </NavBarWrapper>
+  ) : (
+    <MobileNavBarWrapper>
+      <div style={{ fontSize: 30, fontWeight: 700, color: 'white' }}>LOGO</div>
+      <MobileNavBarActions>
+        <IconButton>
+          <Phone />
+        </IconButton>
+        <IconButton onClick={handleOpen}>
+          <Burger />
+        </IconButton>
+      </MobileNavBarActions>
+      <MobileMenu
+        open={open}
+        close={handleClose}
+        items={[
+          { to: Link.main, value: 'Головна' },
+          { to: Link.price, value: 'Вартість' },
+          { to: Link.individually, value: 'Індивідуально' },
+          { to: Link.about, value: 'Про компанію' },
+          { to: Link.faq, value: 'FAQ' },
+          { to: Link.contact, value: 'Контакти' },
+        ]}
+      />
+    </MobileNavBarWrapper>
   )
 }
