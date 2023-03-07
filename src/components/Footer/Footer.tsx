@@ -51,11 +51,11 @@ const FormInput = styled(TextField)(() => ({
   border: 'none',
   background: 'transparent',
   color: '#FCFCFC',
-  fontSize: 18,
   '&:focus-visible': {
     outline: 'none',
   },
   '& .MuiOutlinedInput-root': {
+    fontSize: 15,
     color: '#ffffff',
     '& fieldset': {
       border: 'none',

@@ -88,7 +88,7 @@ export const ModalPopup: FC<ModalProps> = ({ open, closeModal }) => {
         <ModalTitle>Зворотній дзвінок</ModalTitle>
         <ModalSubtitle>Заповнюй форму та наш менеджер зателефонує тобі в найкоротший час</ModalSubtitle>
         <FormContainer onSubmit={sendForm}>
-          <FormInput type="text" value={name} label="Name" onChange={typingName} />
+          <FormInput type="text" value={name} label="Введіть Ваше ім'я" onChange={typingName} />
           <FormInput type="number" value={tell} label="099 000 00 00" onChange={typingTell} />
           <FormButton variant="contained" type="submit">
             Submit
