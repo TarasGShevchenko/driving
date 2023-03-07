@@ -9,7 +9,6 @@ import { MainPage } from './pages/MainPage'
 import { PricePage } from './pages/PricePage'
 import { IndividuallyPage } from './pages/IndividuallyPage'
 import { AboutPage } from './pages/AboutPage'
-import { FAQPage } from './pages/FAQPage'
 import { ContactPage } from './pages/ContactPage'
 
 function App() {
@@ -20,7 +19,6 @@ function App() {
         <Route path={Link.price} element={<PricePage />} />
         <Route path={Link.individually} element={<IndividuallyPage />} />
         <Route path={Link.about} element={<AboutPage />} />
-        <Route path={Link.faq} element={<FAQPage />} />
         <Route path={Link.contact} element={<ContactPage />} />
       </Routes>
       <ToastContainer />

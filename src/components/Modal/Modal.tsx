@@ -11,14 +11,14 @@ interface ModalProps {
 
 const ModalContainer = styled('div')(() => ({
   backgroundColor: '#fefefe',
-  margin: '10% auto',
+  margin: '80px auto',
   padding: 20,
-  border: '3px solid #F6EC00',
+  border: '3px solid #f67e00',
   borderRadius: 20,
   width: `${isMobile() ? '300px' : '500px'}`,
 }))
 const ModalTitle = styled('div')(() => ({
-  color: '#6ec1e4',
+  color: '#f67e00',
   fontSize: `${isMobile() ? '30px' : '40px'}`,
   margin: 10,
 }))
@@ -37,6 +37,7 @@ const FormInput = styled(TextField)(() => ({
 }))
 const FormButton = styled(Button)(() => ({
   margin: 10,
+  backgroundColor: '#f67e00',
 }))
 
 export const ModalPopup: FC<ModalProps> = ({ open, closeModal }) => {

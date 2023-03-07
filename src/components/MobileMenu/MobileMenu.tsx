@@ -14,11 +14,13 @@ const MenuContent = styled('div')(() => ({
   flexDirection: 'column',
   alignItems: 'flex-start',
   background: '#FFFFFF',
+  marginTop: 64,
 }))
 const MenuUl = styled('ul')(() => ({}))
 const MenuLi = styled('li')(() => ({
   listStyle: 'none',
   padding: '8px 0',
+  fontSize: 34,
 }))
 const MenuLink = styled(NavLink)(() => ({
   color: '#1b1b1b',
@@ -26,7 +28,7 @@ const MenuLink = styled(NavLink)(() => ({
   fontSize: 20,
   fontWeight: 500,
   '&.active': {
-    borderBottom: '3px solid #F6EC00',
+    borderBottom: '3px solid #f67e00',
   },
 }))
 

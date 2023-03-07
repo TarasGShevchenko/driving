@@ -10,6 +10,7 @@ const IndividuallyContainer = styled('div')(() => ({
   justifyContent: 'center',
   alignItems: 'center',
   padding: 10,
+  marginTop: 40,
 }))
 const IndividuallyTitle = styled('div')(() => ({
   color: '#1B1B1B',

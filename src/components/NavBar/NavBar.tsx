@@ -1,6 +1,6 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
-import { Drawer, IconButton, styled } from '@mui/material'
+import { Drawer, IconButton, styled, Link as LinkMui } from '@mui/material'
 
 import { Button } from '../Button'
 import { Link } from '../../enums'
@@ -8,6 +8,7 @@ import { isMobile } from '../../utils'
 import { ReactComponent as Burger } from '../../assets/icons/menu-burger.svg'
 import { ReactComponent as Phone } from '../../assets/icons/phone.svg'
 import { MobileMenu } from '../MobileMenu/MobileMenu'
+import home from '../../assets/home.jpg'
 
 const NavBarWrapper = styled('div')<{ main: boolean }>(({ main }) => ({
   position: 'relative',
@@ -16,18 +17,33 @@ const NavBarWrapper = styled('div')<{ main: boolean }>(({ main }) => ({
   alignItems: 'center',
   height: '100%',
   backgroundColor: '#1b1b1b',
-  zIndex: 9,
   ...(main && {
-    marginTop: 40,
-    backgroundColor: 'transparent',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    height: 700,
+    background: `url(${home}) center center/cover no-repeat`,
+    '&:after': {
+      content: '""',
+      width: '100%',
+      height: '100%',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      backgroundColor: 'rgba(0,0,0,0.65)',
+      zIndex: 1,
+    },
   }),
 }))
-const NavBarContainer = styled('div')(() => ({
+const NavBarContainer = styled('div')<{ main: boolean }>(({ main }) => ({
   maxWidth: 1320,
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
   width: '100%',
+  ...(main && {
+    marginTop: 40,
+    zIndex: 2,
+  }),
 }))
 const NavBarLinks = styled('ul')(() => ({
   display: 'flex',
@@ -45,10 +61,10 @@ const StyledNavLink = styled(NavLink)(() => ({
   fontSize: 13,
   fontWeight: 500,
   '&.active': {
-    borderBottom: '3px solid #F6EC00',
+    borderBottom: '3px solid #f67e00',
   },
   '&:hover': {
-    borderBottom: '3px solid #F6EC00',
+    borderBottom: '3px solid #f67e00',
   },
 }))
 const NavbarInfo = styled('div')(() => ({
@@ -57,7 +73,7 @@ const NavbarInfo = styled('div')(() => ({
 }))
 const NavbarInfoContent = styled('div')(() => ({
   '& > span': {
-    color: '#F6EC00',
+    color: '#f67e00',
     fontSize: 13,
     fontWeight: 700,
   },
@@ -69,25 +85,65 @@ const NavbarInfoContent = styled('div')(() => ({
   },
 }))
 const MobileNavBarWrapper = styled('div')(() => ({
-  position: 'relative',
+  position: 'fixed',
+  top: 0,
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  height: '100%',
   backgroundColor: '#1b1b1b',
-  zIndex: 9,
-  padding: '4px 16px',
+  zIndex: 9999,
+  width: '100%',
 }))
 
 const MobileNavBarActions = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
+  margin: 8,
+}))
+const NavBarContent = styled('div')(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  padding: 10,
+  height: '100%',
+  zIndex: 2,
+}))
+const NavBarContentTitle = styled('div')(() => ({
+  textAlign: 'center',
+  marginTop: 40,
+  marginBottom: 40,
+  fontSize: 40,
+  fontWeight: 600,
+  color: '#f67e00',
+  ...(isMobile() && {
+    fontSize: 39,
+  }),
+}))
+const NavBarContentActions = styled('div')(() => ({
+  textAlign: 'center',
+  marginTop: 60,
+}))
+const NavBarLogo = styled('div')(() => ({
+  fontSize: 30,
+  fontWeight: 700,
+  color: 'white',
+  margin: 8,
+}))
+const PhoneIcon = styled(Phone)(() => ({
+  color: 'white',
+}))
+const LinkPhone = styled(LinkMui)(() => ({
+  flex: '0 0 auto',
+  fontSize: '1.5rem',
+  padding: 8,
 }))
 
 export const NavBar = () => {
   const mobileDevice = isMobile()
   const location = useLocation()
+  const main = useMemo(() => location.pathname === Link.main, [location])
   const [open, setOpen] = useState(false)
 
   const handleOpen = useCallback(() => {
@@ -98,8 +154,8 @@ export const NavBar = () => {
   }, [])
 
   return !mobileDevice ? (
-    <NavBarWrapper main={location.pathname === Link.main}>
-      <NavBarContainer>
+    <NavBarWrapper main={main}>
+      <NavBarContainer main={main}>
         <NavBarLinks>
           <NavBarLink>
             <StyledNavLink to={Link.main}>Головна</StyledNavLink>
@@ -114,29 +170,35 @@ export const NavBar = () => {
             <StyledNavLink to={Link.about}>Про компанію</StyledNavLink>
           </NavBarLink>
           <NavBarLink>
-            <StyledNavLink to={Link.faq}>FAQ</StyledNavLink>
-          </NavBarLink>
-          <NavBarLink>
             <StyledNavLink to={Link.contact}>Контакти</StyledNavLink>
           </NavBarLink>
         </NavBarLinks>
         <NavbarInfo>
           <NavbarInfoContent>
-            <span>Школа на троєщині</span>
-            <p>+380 68 88 00</p>
-            <p>вул. Сабурова, 13</p>
+            <span>Автошкола Driving Чабани</span>
+            <p>+380 99 600 80 08</p>
+            <p>вул. Машинобудівників, 5д</p>
           </NavbarInfoContent>
           <Button label={'Замовити дзвінок'} modal />
         </NavbarInfo>
       </NavBarContainer>
+      {main && (
+        <NavBarContent>
+          <NavBarContentTitle>Почніть свій шлях до безпечного та впевненого водіння!</NavBarContentTitle>
+          <NavBarContentActions>
+            <Button label={'Подивитись ціни'} to={Link.price} isMain />
+            <Button label={'Замовити двінок'} modal isMain />
+          </NavBarContentActions>
+        </NavBarContent>
+      )}
     </NavBarWrapper>
   ) : (
     <MobileNavBarWrapper>
-      <div style={{ fontSize: 30, fontWeight: 700, color: 'white' }}>LOGO</div>
+      <NavBarLogo>DRIVING</NavBarLogo>
       <MobileNavBarActions>
-        <IconButton>
-          <Phone />
-        </IconButton>
+        <LinkPhone href="tel:+380996008008">
+          <PhoneIcon />
+        </LinkPhone>
         <IconButton onClick={handleOpen}>
           <Burger />
         </IconButton>
@@ -149,7 +211,6 @@ export const NavBar = () => {
             { to: Link.price, value: 'Вартість' },
             { to: Link.individually, value: 'Індивідуально' },
             { to: Link.about, value: 'Про компанію' },
-            { to: Link.faq, value: 'FAQ' },
             { to: Link.contact, value: 'Контакти' },
           ]}
         />

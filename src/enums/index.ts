@@ -3,6 +3,5 @@ export enum Link {
   price = '/price',
   individually = '/individually',
   about = '/about',
-  faq = '/faq',
   contact = '/contact',
 }

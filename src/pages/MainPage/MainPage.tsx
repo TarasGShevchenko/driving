@@ -13,19 +13,19 @@ import { NavLink } from 'react-router-dom'
 
 const MainContainer = styled('div')(() => ({
   background: `url(${home}) center center/cover no-repeat`,
-  position: 'absolute',
-  left: 0,
-  top: 0,
+  position: 'relative',
   width: '100%',
   height: 700,
-}))
-const MainOverlay = styled('div')(() => ({
-  position: 'absolute',
-  backgroundColor: '#000000',
-  opacity: 0.5,
-  transition: 'background 0.3s, border-radius 0.3s, opacity 0.3s',
-  width: '100%',
-  height: '100%',
+  '&:after': {
+    content: '""',
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    backgroundColor: 'rgba(0,0,0,0.65)',
+    zIndex: 1,
+  },
 }))
 const MainContent = styled('div')(() => ({
   display: 'flex',
@@ -34,7 +34,7 @@ const MainContent = styled('div')(() => ({
   alignItems: 'center',
   padding: 10,
   height: 'inherit',
-  position: 'relative',
+  position: 'sticky',
   zIndex: 2,
 }))
 const MainTitle = styled('div')(() => ({
@@ -43,18 +43,9 @@ const MainTitle = styled('div')(() => ({
   marginBottom: 40,
   fontSize: 40,
   fontWeight: 600,
-  color: '#F6EC00',
+  color: '#f67e00',
   ...(isMobile() && {
     fontSize: 39,
-  }),
-}))
-const MainSubTitle = styled('p')(() => ({
-  fontSize: 24,
-  fontWeight: 600,
-  color: '#F6EC00',
-  lineHeight: '5px',
-  ...(isMobile() && {
-    marginTop: 30,
   }),
 }))
 const MainActions = styled('div')(() => ({
@@ -63,7 +54,6 @@ const MainActions = styled('div')(() => ({
 }))
 const MainPrices = styled('div')(() => ({
   position: 'relative',
-  top: 650,
 }))
 const CardPriceWrapper = styled('div')(() => ({
   display: 'flex',
@@ -79,7 +69,6 @@ const Title = styled('div')(() => ({
   textAlign: 'center',
   position: 'relative',
   margin: 40,
-  top: 650,
 }))
 const Advantages = styled('div')(() => ({
   display: 'flex',
@@ -88,7 +77,6 @@ const Advantages = styled('div')(() => ({
   justifyContent: 'center',
   alignItems: 'center',
   position: 'relative',
-  top: 650,
 }))
 const AboutContainer = styled('div')(() => ({
   display: 'flex',
@@ -96,7 +84,6 @@ const AboutContainer = styled('div')(() => ({
   justifyContent: 'center',
   alignItems: 'center',
   position: 'relative',
-  top: 650,
 }))
 const AboutImage = styled('div')(() => ({
   display: 'flex',
@@ -120,7 +107,7 @@ const AboutContentText = styled('p')(() => ({
   color: '#7c7c7c',
 }))
 const AboutContentLink = styled(NavLink)(() => ({
-  color: '#F6EC00',
+  color: '#f67e00',
   textDecoration: 'none',
   cursor: 'pointer',
 }))
@@ -128,25 +115,24 @@ const AboutContentLink = styled(NavLink)(() => ({
 export const MainPage = () => {
   return (
     <>
-      <MainContainer>
-        <MainOverlay />
-        <MainContent>
-          <MainTitle>Даруємо кожному подарунки!</MainTitle>
-          <MainSubTitle>&#8226; Навчальна література</MainSubTitle>
-          <MainSubTitle>&#8226; Проходження мед-комісії</MainSubTitle>
-          <MainActions>
-            <Button label={'Подивитись ціни'} to={Link.price} />
-            <Button label={'Замовити двінок'} modal />
-          </MainActions>
-        </MainContent>
-      </MainContainer>
+      {isMobile() && (
+        <MainContainer>
+          <MainContent>
+            <MainTitle>Почніть свій шлях до безпечного та впевненого водіння!</MainTitle>
+            <MainActions>
+              <Button label={'Подивитись ціни'} to={Link.price} isMain />
+              <Button label={'Замовити двінок'} modal isMain />
+            </MainActions>
+          </MainContent>
+        </MainContainer>
+      )}
       <Title>Чим ми кращі за інших</Title>
       <Advantages>
         {advantages.map(({ icon, position, name, content }, i) => (
           <CardAdvantages key={i} icon={icon} position={position} name={name} content={content} />
         ))}
       </Advantages>
-      <Title>Перша лекція безкоштовно!</Title>
+      <Title>Наші тарифи</Title>
       <MainPrices>
         <CardPriceWrapper>
           {cards.map(({ name, price, description }, i) => (
@@ -162,11 +148,9 @@ export const MainPage = () => {
         <AboutContent>
           <AboutContentTitle>АВТОШКОЛА DRIVING</AboutContentTitle>
           <AboutContentText>
-            «Driving» – це місце, де Ви дійсно навчитеся керувати автомобілем. Наші інструктори з навчання водінню
-            підходять індивідуально до кожного учня. Наша школа комерційна, але в ній набагато більше душі і любові до
-            своєї справи, ніж комерції. Ви не пошкодуєте про проведений тут час і витрачені гроші, якісне навчання ми
-            Вам гарантуємо! А ще у нас хороші машини, на яких навчимо їздити. Приходьте до нас, ми з радістю допоможемо
-            Вам сісти за кермо, розуміти свій автомобіль і не боятися дороги.
+            Ласкаво просимо до автошколи &apos;DRIVING&apos;! Ми пропонуємо високоякісні послуги навчання, що допоможуть
+            вам стати впевненим водієм на дорозі. Надаємо послуги навчання водіння для учнів будь-якого рівня
+            складності, від початківців до впевнених водіїв.
           </AboutContentText>
           <AboutContentLink to={Link.about}>Детальніше</AboutContentLink>
         </AboutContent>

@@ -1,18 +1,13 @@
 import React, { ChangeEvent, FC, FormEvent, useCallback, useState } from 'react'
-import { styled } from '@mui/material'
+import { styled, TextField } from '@mui/material'
 import footerImage from '../../assets/footer.png'
 import { isMobile } from '../../utils'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-import { Link } from '../../enums'
-import { useLocation } from 'react-router-dom'
 
-const FooterContainer = styled('footer')<{ main: boolean }>(({ main }) => ({
+const FooterContainer = styled('footer')(() => ({
   width: '100%',
-  ...(main && {
-    position: 'relative',
-    top: 850,
-  }),
+  marginTop: 100,
 }))
 const FooterForm = styled('div')(() => ({
   display: 'flex',
@@ -48,7 +43,8 @@ const FooterFormContentText = styled('h3')(() => ({
   fontSize: 30,
   color: '#FCFCFC',
 }))
-const FormInput = styled('input')(() => ({
+const FormInput = styled(TextField)(() => ({
+  justifyContent: 'center',
   width: `${isMobile() ? '300px' : '400px'}`,
   height: 40,
   padding: '6px 20px',
@@ -59,6 +55,12 @@ const FormInput = styled('input')(() => ({
   '&:focus-visible': {
     outline: 'none',
   },
+  '& .MuiOutlinedInput-root': {
+    color: '#ffffff',
+    '& fieldset': {
+      border: 'none',
+    },
+  },
 }))
 
 const Form = styled('form')(() => ({
@@ -67,7 +69,7 @@ const Form = styled('form')(() => ({
 const FormInputWrap = styled('div')(() => ({
   transform: 'skew(-20deg)',
   backgroundColor: 'rgba(246, 236, 0, 0)',
-  color: '#F6EC00',
+  color: '#f67e00',
   fontSize: 14,
   textTransform: 'capitalize',
   border: '3px solid #fcfcfc',
@@ -80,10 +82,10 @@ const FormButton = styled('button')(() => ({
   padding: '6px 20px',
   transform: 'skew(-20deg)',
   backgroundColor: 'rgba(246, 236, 0, 0)',
-  color: '#F6EC00',
+  color: '#f67e00',
   fontSize: 14,
   textTransform: 'capitalize',
-  border: '3px solid #F6EC00',
+  border: '3px solid #f67e00',
   borderRadius: 10,
   margin: 10,
   cursor: 'pointer',
@@ -95,7 +97,6 @@ const FooterBottom = styled('div')(() => ({
 }))
 
 export const Footer: FC = () => {
-  const location = useLocation()
   const [name, setName] = useState('')
   const [tell, setTell] = useState('')
 
@@ -133,7 +134,7 @@ export const Footer: FC = () => {
   )
 
   return (
-    <FooterContainer main={location.pathname === Link.main}>
+    <FooterContainer>
       <FooterForm>
         <FooterOverlay />
         <FooterFormContent>
@@ -146,16 +147,21 @@ export const Footer: FC = () => {
         </FooterFormContent>
         <Form onSubmit={sendForm}>
           <FormInputWrap>
-            <FormInput placeholder={"Введіть Ваше ім'я"} value={name} onChange={typingName} />
+            <FormInput type="text" placeholder={"Введіть Ваше ім'я"} value={name} onChange={typingName} />
           </FormInputWrap>
           <FormInputWrap>
-            <FormInput placeholder={'Введіть Ваш телефон'} value={tell} onChange={typingTell} />
+            <FormInput
+              type="number"
+              placeholder={'Введіть Ваш телефон (099 000 00 00)'}
+              value={tell}
+              onChange={typingTell}
+            />
           </FormInputWrap>
           <FormButton type={'submit'}>Надіслати</FormButton>
         </Form>
       </FooterForm>
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d204450.6709985166!2d30.560180003058402!3d50.41451025864461!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sua!4v1676157141325!5m2!1sru!2sua"
+        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1273.148409645372!2d30.42733941426145!3d50.34236899834341!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNTDCsDIwJzMyLjUiTiAzMMKwMjUnNDAuNyJF!5e0!3m2!1sru!2sua!4v1678030850113!5m2!1sru!2sua"
         width="100%"
         height="450"
         style={{ border: 0 }}
