@@ -1,6 +1,7 @@
 {
   "name": "driving",
   "version": "0.1.0",
+  "homepage": "driving-chabany.com.ua",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
