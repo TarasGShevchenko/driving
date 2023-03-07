@@ -116,19 +116,27 @@ export const Footer: FC = () => {
       const chatId = process.env.REACT_APP_TELEGRAM_CHAT_ID
       const urlApi = `https://api.telegram.org/bot${token}/sendMessage`
 
+      if (!name) {
+        toast.error("Напишіть Ваше ім'я", { theme: 'colored' })
+      }
+      if (!tell) {
+        toast.error('Введіть Ваш телефон', { theme: 'colored' })
+      }
+
       const mail = `
       <b>New request!</b>\n
       <b>Name: </b> ${name}\n
       <b>Tell: </b> ${tell}
     `
+      if (!!name && !!tell) {
+        axios.post(urlApi, {
+          chat_id: chatId,
+          parse_mode: 'html',
+          text: mail,
+        })
 
-      axios.post(urlApi, {
-        chat_id: chatId,
-        parse_mode: 'html',
-        text: mail,
-      })
-
-      toast.success('Ваш запит відправлено', { theme: 'colored' })
+        toast.success('Ваш запит відправлено', { theme: 'colored' })
+      }
     },
     [name, tell],
   )

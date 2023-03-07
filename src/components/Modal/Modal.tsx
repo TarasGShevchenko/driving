@@ -64,20 +64,29 @@ export const ModalPopup: FC<ModalProps> = ({ open, closeModal }) => {
       const chatId = process.env.REACT_APP_TELEGRAM_CHAT_ID
       const urlApi = `https://api.telegram.org/bot${token}/sendMessage`
 
+      if (!name) {
+        toast.error("Напишіть Ваше ім'я", { theme: 'colored' })
+      }
+      if (!tell) {
+        toast.error('Введіть Ваш телефон', { theme: 'colored' })
+      }
+
       const mail = `
       <b>New request!</b>\n
       <b>Name: </b> ${name}\n
       <b>Tell: </b> ${tell}
     `
 
-      axios.post(urlApi, {
-        chat_id: chatId,
-        parse_mode: 'html',
-        text: mail,
-      })
+      if (!!name && !!tell) {
+        axios.post(urlApi, {
+          chat_id: chatId,
+          parse_mode: 'html',
+          text: mail,
+        })
 
-      toast.success('Ваш запит відправлено', { theme: 'colored' })
-      closeModal(false)
+        toast.success('Ваш запит відправлено', { theme: 'colored' })
+        closeModal(false)
+      }
     },
     [closeModal, name, tell],
   )
