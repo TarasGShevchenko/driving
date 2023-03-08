@@ -72,9 +72,9 @@ export const ModalPopup: FC<ModalProps> = ({ open, closeModal }) => {
       }
 
       const mail = `
-      <b>New request!</b>\n
-      <b>Name: </b> ${name}\n
-      <b>Tell: </b> ${tell}
+      <b>Новий запит!</b>\n
+      <b>Ім'я: </b> ${name}\n
+      <b>Телефон: </b> ${tell}
     `
 
       if (!!name && !!tell) {
