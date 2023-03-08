@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { styled } from '@mui/material'
 import { cards } from '../../data '
 import { CardPrice } from '../../components/CardPrice'
@@ -38,6 +38,9 @@ const CardPriceWrapper = styled('div')(() => ({
 }))
 
 export const PricePage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <PriceContainer>
       <PriceTitle>Наші тарифи</PriceTitle>

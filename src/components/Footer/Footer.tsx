@@ -30,17 +30,13 @@ const FooterOverlay = styled('div')(() => ({
   height: '100%',
 }))
 const FooterFormContent = styled('div')(() => ({
-  maxWidth: 750,
+  maxWidth: 850,
   zIndex: 99,
   padding: 20,
 }))
 const FooterFormContentTitle = styled('h2')(() => ({
   fontSize: 48,
   fontWeight: 600,
-  color: '#FCFCFC',
-}))
-const FooterFormContentText = styled('h3')(() => ({
-  fontSize: 30,
   color: '#FCFCFC',
 }))
 const FormInput = styled(TextField)(() => ({
@@ -69,7 +65,7 @@ const Form = styled('form')(() => ({
 const FormInputWrap = styled('div')(() => ({
   transform: 'skew(-20deg)',
   backgroundColor: 'rgba(246, 236, 0, 0)',
-  color: '#f67e00',
+  color: '#ffca3e',
   fontSize: 14,
   textTransform: 'capitalize',
   border: '3px solid #fcfcfc',
@@ -82,10 +78,10 @@ const FormButton = styled('button')(() => ({
   padding: '6px 20px',
   transform: 'skew(-20deg)',
   backgroundColor: 'rgba(246, 236, 0, 0)',
-  color: '#f67e00',
+  color: '#ffca3e',
   fontSize: 14,
   textTransform: 'capitalize',
-  border: '3px solid #f67e00',
+  border: '3px solid #ffca3e',
   borderRadius: 10,
   margin: 10,
   cursor: 'pointer',
@@ -122,20 +118,27 @@ export const Footer: FC = () => {
       if (!tell) {
         toast.error('Введіть Ваш телефон', { theme: 'colored' })
       }
+      if (tell.length < 10) {
+        toast.error('Номер телефону вказано некоректно', { theme: 'colored' })
+      }
 
       const mail = `
       <b>Новий запит!</b>\n
       <b>Ім'я: </b> ${name}\n
       <b>Телефон: </b> ${tell}
     `
-      if (!!name && !!tell) {
-        axios.post(urlApi, {
-          chat_id: chatId,
-          parse_mode: 'html',
-          text: mail,
-        })
-
-        toast.success('Ваш запит відправлено', { theme: 'colored' })
+      if (!!name && !!tell && tell.length >= 10) {
+        axios
+          .post(urlApi, {
+            chat_id: chatId,
+            parse_mode: 'html',
+            text: mail,
+          })
+          .then((res) => {
+            res.status === 200
+              ? toast.success('Ваш запит відправлено', { theme: 'colored' })
+              : toast.error('Помилка! Спробуйте зателефонувати нам.', { theme: 'colored' })
+          })
       }
     },
     [name, tell],
@@ -147,11 +150,8 @@ export const Footer: FC = () => {
         <FooterOverlay />
         <FooterFormContent>
           <FooterFormContentTitle>
-            Хочеш записатися на навчання <strong>прямо зараз?</strong>
+            Заповнюй форму і ми зв&apos;яжемось з тобою в найкоротші терміни!
           </FooterFormContentTitle>
-          <FooterFormContentText>
-            Заповнюй форму і наш менеджер зв’яжеться з тобою в найкоротші терміни!
-          </FooterFormContentText>
         </FooterFormContent>
         <Form onSubmit={sendForm}>
           <FormInputWrap>

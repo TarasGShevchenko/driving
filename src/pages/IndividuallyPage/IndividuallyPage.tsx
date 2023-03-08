@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { styled } from '@mui/material'
 import { isMobile } from '../../utils'
 import { individuals } from '../../data '
@@ -35,6 +35,9 @@ const IndividuallyText = styled('p')(() => ({
   color: '#7c7c7c',
 }))
 export const IndividuallyPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <IndividuallyContainer>
       <IndividuallyTitle>Індивідуальне навчання</IndividuallyTitle>

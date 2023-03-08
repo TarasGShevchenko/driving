@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { IconButton, styled } from '@mui/material'
 
 import { isMobile } from '../../utils'
@@ -30,11 +30,11 @@ const ContactSubTitle = styled('div')(() => ({
   fontSize: isMobile() ? 16 : 20,
   fontWeight: 700,
   color: '#1b1b1b',
-  backgroundColor: '#f67e00',
+  backgroundColor: '#ffca3e',
   borderStyle: 'solid',
   borderWidth: 3,
   borderRadius: 10,
-  borderColor: '#f67e00',
+  borderColor: '#ffca3e',
   width: isMobile() ? 300 : 700,
   height: 50,
   textTransform: 'uppercase',
@@ -46,6 +46,10 @@ const ContactItemContainer = styled('div')(() => ({
   justifyContent: 'space-between',
   alignItems: 'center',
   width: 1000,
+  '& > a': {
+    textDecoration: 'none',
+    color: '#1b1b1b',
+  },
 }))
 const ContactItem = styled('div')(() => ({
   display: 'flex',
@@ -55,13 +59,13 @@ const ContactItem = styled('div')(() => ({
   margin: 40,
 }))
 const PhoneIcon = styled(Phone)(() => ({
-  color: '#f67e00',
+  color: '#ffca3e',
 }))
 // const EmailIcon = styled(Email)(() => ({
-//   color: '#f67e00',
+//   color: '#ffca3e',
 // }))
 const MapIcon = styled(Map)(() => ({
-  color: '#f67e00',
+  color: '#ffca3e',
 }))
 const ContactItemText = styled('div')(() => ({
   fontSize: 20,
@@ -75,17 +79,22 @@ const ContactIFrame = styled('div')(() => ({
 }))
 
 export const ContactPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <ContactContainer>
       <ContactTitle>Контакти</ContactTitle>
       <ContactSubTitle>Автошкола Driving Чабани</ContactSubTitle>
       <ContactItemContainer>
-        <ContactItem>
-          <IconButton>
-            <PhoneIcon />
-          </IconButton>
-          <ContactItemText>+38 099 600 80 08</ContactItemText>
-        </ContactItem>
+        <a href="tel:+380996008008">
+          <ContactItem>
+            <IconButton>
+              <PhoneIcon />
+            </IconButton>
+            <ContactItemText>+38 099 600 80 08</ContactItemText>
+          </ContactItem>
+        </a>
         {/*<ContactItem>*/}
         {/*  <IconButton>*/}
         {/*    <EmailIcon />*/}

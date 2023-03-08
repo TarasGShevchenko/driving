@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { styled } from '@mui/material'
 import { advantages } from '../../data '
 import { isMobile } from '../../utils'
@@ -35,6 +35,9 @@ const AboutContentText = styled('p')(() => ({
 }))
 
 export const AboutPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <AboutContainer>
       <AboutTitle>Про компанію</AboutTitle>

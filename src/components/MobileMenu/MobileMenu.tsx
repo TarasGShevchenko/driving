@@ -28,7 +28,7 @@ const MenuLink = styled(NavLink)(() => ({
   fontSize: 20,
   fontWeight: 500,
   '&.active': {
-    borderBottom: '3px solid #f67e00',
+    borderBottom: '3px solid #ffca3e',
   },
 }))
 

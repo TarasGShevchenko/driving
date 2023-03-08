@@ -13,12 +13,12 @@ const ModalContainer = styled('div')(() => ({
   backgroundColor: '#fefefe',
   margin: '80px auto',
   padding: 20,
-  border: '3px solid #f67e00',
+  border: '3px solid #ffca3e',
   borderRadius: 20,
   width: `${isMobile() ? '300px' : '500px'}`,
 }))
 const ModalTitle = styled('div')(() => ({
-  color: '#f67e00',
+  color: '#ffca3e',
   fontSize: `${isMobile() ? '30px' : '40px'}`,
   margin: 10,
 }))
@@ -37,7 +37,7 @@ const FormInput = styled(TextField)(() => ({
 }))
 const FormButton = styled(Button)(() => ({
   margin: 10,
-  backgroundColor: '#f67e00',
+  backgroundColor: '#ffca3e',
 }))
 
 export const ModalPopup: FC<ModalProps> = ({ open, closeModal }) => {
@@ -70,6 +70,9 @@ export const ModalPopup: FC<ModalProps> = ({ open, closeModal }) => {
       if (!tell) {
         toast.error('Введіть Ваш телефон', { theme: 'colored' })
       }
+      if (tell.length < 10) {
+        toast.error('Номер телефону вказано некоректно', { theme: 'colored' })
+      }
 
       const mail = `
       <b>Новий запит!</b>\n
@@ -77,15 +80,21 @@ export const ModalPopup: FC<ModalProps> = ({ open, closeModal }) => {
       <b>Телефон: </b> ${tell}
     `
 
-      if (!!name && !!tell) {
-        axios.post(urlApi, {
-          chat_id: chatId,
-          parse_mode: 'html',
-          text: mail,
-        })
-
-        toast.success('Ваш запит відправлено', { theme: 'colored' })
-        closeModal(false)
+      if (!!name && !!tell && tell.length >= 10) {
+        axios
+          .post(urlApi, {
+            chat_id: chatId,
+            parse_mode: 'html',
+            text: mail,
+          })
+          .then((res) => {
+            if (res.status === 200) {
+              toast.success('Ваш запит відправлено', { theme: 'colored' })
+              closeModal(false)
+            } else {
+              toast.error('Помилка! Спробуйте зателефонувати нам.', { theme: 'colored' })
+            }
+          })
       }
     },
     [closeModal, name, tell],

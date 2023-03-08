@@ -1,19 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { styled } from '@mui/material'
+import { NavLink } from 'react-router-dom'
 
 import { Button } from '../../components/Button'
 import { Link } from '../../enums'
-import home from '../../assets/home.jpg'
+import main from '../../assets/main.jpg'
 import { isMobile } from '../../utils'
 import { CardPrice } from '../../components/CardPrice'
 import { advantages, cards } from '../../data '
 import { CardAdvantages } from '../../components/CardAdvantages'
 import aboutImage from '../../assets/about.jpg'
-import { NavLink } from 'react-router-dom'
 
 const MainContainer = styled('div')(() => ({
-  background: `url(${home}) center center/cover no-repeat`,
+  background: `url(${main}) right center/cover no-repeat`,
   position: 'relative',
+  ...(isMobile() && {
+    backgroundPositionX: '65%',
+  }),
   width: '100%',
   height: 700,
   '&:after': {
@@ -43,7 +46,7 @@ const MainTitle = styled('div')(() => ({
   marginBottom: 40,
   fontSize: 40,
   fontWeight: 600,
-  color: '#f67e00',
+  color: '#ffffff',
   ...(isMobile() && {
     fontSize: 39,
   }),
@@ -107,12 +110,15 @@ const AboutContentText = styled('p')(() => ({
   color: '#7c7c7c',
 }))
 const AboutContentLink = styled(NavLink)(() => ({
-  color: '#f67e00',
+  color: '#ffca3e',
   textDecoration: 'none',
   cursor: 'pointer',
 }))
 
 export const MainPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <>
       {isMobile() && (

@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { Drawer, IconButton, styled, Link as LinkMui } from '@mui/material'
 
 import { Button } from '../Button'
@@ -8,7 +8,7 @@ import { isMobile } from '../../utils'
 import { ReactComponent as Burger } from '../../assets/icons/menu-burger.svg'
 import { ReactComponent as Phone } from '../../assets/icons/phone.svg'
 import { MobileMenu } from '../MobileMenu/MobileMenu'
-import home from '../../assets/home.jpg'
+import home from '../../assets/main.jpg'
 
 const NavBarWrapper = styled('div')<{ main: boolean }>(({ main }) => ({
   position: 'relative',
@@ -61,10 +61,10 @@ const StyledNavLink = styled(NavLink)(() => ({
   fontSize: 13,
   fontWeight: 500,
   '&.active': {
-    borderBottom: '3px solid #f67e00',
+    borderBottom: '3px solid #ffca3e',
   },
   '&:hover': {
-    borderBottom: '3px solid #f67e00',
+    borderBottom: '3px solid #ffca3e',
   },
 }))
 const NavbarInfo = styled('div')(() => ({
@@ -72,17 +72,26 @@ const NavbarInfo = styled('div')(() => ({
   alignItems: 'center',
 }))
 const NavbarInfoContent = styled('div')(() => ({
-  '& > span': {
-    color: '#f67e00',
-    fontSize: 13,
-    fontWeight: 700,
-  },
+  margin: '16px 0',
   '& > p': {
     color: '#FCFCFC',
     fontSize: 13,
     fontWeight: 500,
     lineHeight: '6px',
+    margin: '8px 0',
   },
+}))
+const NavBarInfoTitle = styled('div')(() => ({
+  color: '#ffca3e',
+  fontSize: 13,
+  fontWeight: 700,
+}))
+const NavBarInfoTell = styled('a')(() => ({
+  color: '#FCFCFC',
+  fontSize: 13,
+  fontWeight: 500,
+  lineHeight: '6px',
+  textDecoration: 'none',
 }))
 const MobileNavBarWrapper = styled('div')(() => ({
   position: 'fixed',
@@ -116,7 +125,7 @@ const NavBarContentTitle = styled('div')(() => ({
   marginBottom: 40,
   fontSize: 40,
   fontWeight: 600,
-  color: '#f67e00',
+  color: '#ffffff',
   ...(isMobile() && {
     fontSize: 39,
   }),
@@ -143,6 +152,7 @@ const LinkPhone = styled(LinkMui)(() => ({
 export const NavBar = () => {
   const mobileDevice = isMobile()
   const location = useLocation()
+  const history = useNavigate()
   const main = useMemo(() => location.pathname === Link.main, [location])
   const [open, setOpen] = useState(false)
 
@@ -152,6 +162,10 @@ export const NavBar = () => {
   const handleClose = useCallback(() => {
     setOpen(false)
   }, [])
+  const goToMain = useCallback(() => {
+    history(Link.main)
+    window.scroll(0, 0)
+  }, [history])
 
   return !mobileDevice ? (
     <NavBarWrapper main={main}>
@@ -175,8 +189,8 @@ export const NavBar = () => {
         </NavBarLinks>
         <NavbarInfo>
           <NavbarInfoContent>
-            <span>Автошкола Driving Чабани</span>
-            <p>+380 99 600 80 08</p>
+            <NavBarInfoTitle>Автошкола Driving Чабани</NavBarInfoTitle>
+            <NavBarInfoTell href="tel:+380996008008">+380 99 600 80 08</NavBarInfoTell>
             <p>вул. Машинобудівників, 5д</p>
           </NavbarInfoContent>
           <Button label={'Замовити дзвінок'} modal />
@@ -194,7 +208,7 @@ export const NavBar = () => {
     </NavBarWrapper>
   ) : (
     <MobileNavBarWrapper>
-      <NavBarLogo>DRIVING</NavBarLogo>
+      <NavBarLogo onClick={goToMain}>DRIVING</NavBarLogo>
       <MobileNavBarActions>
         <LinkPhone href="tel:+380996008008">
           <PhoneIcon />
