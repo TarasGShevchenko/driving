@@ -137,7 +137,7 @@ const NavBarContentActions = styled('div')(() => ({
   marginTop: 60,
 }))
 const NavBarLogo = styled('div')(() => ({
-  margin: '0 8px',
+  margin: '0 16px',
   display: 'flex',
   alignItems: 'center',
   width: 66,
@@ -150,6 +150,7 @@ const NavBarLogo = styled('div')(() => ({
   }),
   '& > img': {
     width: '100%',
+    height: '100%',
   },
 }))
 const PhoneIcon = styled(Phone)(() => ({
@@ -232,7 +233,7 @@ export const NavBar = () => {
         <LinkPhone href="tel:+380996008008" aria-label={'link-phone-mobile'}>
           <PhoneIcon />
         </LinkPhone>
-        <IconButton onClick={handleOpen} name={'burgerMenu'}>
+        <IconButton onClick={handleOpen} name={'burgerMenu'} aria-label={'burger menu'}>
           <Burger />
         </IconButton>
       </MobileNavBarActions>
