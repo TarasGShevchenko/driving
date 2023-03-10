@@ -4,15 +4,15 @@ import { NavLink } from 'react-router-dom'
 
 import { Button } from '../../components/Button'
 import { Link } from '../../enums'
-import main from '../../assets/main.jpg'
+import home from '../../assets/home.webp'
 import { isMobile } from '../../utils'
 import { CardPrice } from '../../components/CardPrice'
 import { advantages, cards } from '../../data '
 import { CardAdvantages } from '../../components/CardAdvantages'
-import aboutImage from '../../assets/about.jpg'
+import aboutImage from '../../assets/about.webp'
 
 const MainContainer = styled('div')(() => ({
-  background: `url(${main}) right center/cover no-repeat`,
+  background: `url(${home}) right center/cover no-repeat`,
   position: 'relative',
   ...(isMobile() && {
     backgroundPositionX: '65%',
@@ -93,8 +93,10 @@ const AboutImage = styled('div')(() => ({
   justifyContent: 'center',
   alignItems: 'center',
   maxWidth: 480,
+  maxHeight: 270,
   '& > img': {
     width: '100%',
+    height: '100%',
   },
 }))
 const AboutContent = styled('div')(() => ({

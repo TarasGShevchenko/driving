@@ -60,9 +60,12 @@ const CardPriceCenter = styled('ul')(() => ({
     paddingInlineStart: 10,
   }),
 }))
-const CardPriceCenterItem = styled('ul')(() => ({
+const CardPriceCenterItem = styled('li')(() => ({
   padding: 8,
   listStyle: 'none',
+  '& > svg': {
+    margin: '4px 12px 0 0',
+  },
 }))
 
 export const CardPrice: FC<Card> = ({ name, price, description }) => {

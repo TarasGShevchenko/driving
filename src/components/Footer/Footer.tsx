@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC, FormEvent, useCallback, useState } from 'react'
 import { styled, TextField } from '@mui/material'
-import footerImage from '../../assets/footer.png'
+import footerImage from '../../assets/footer.webp'
 import { isMobile } from '../../utils'
 import axios from 'axios'
 import { toast } from 'react-toastify'
@@ -176,6 +176,7 @@ export const Footer: FC = () => {
         allowFullScreen={true}
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
+        title={'footerMap'}
       ></iframe>
       <FooterBottom>&#169;Driving 2023</FooterBottom>
     </FooterContainer>

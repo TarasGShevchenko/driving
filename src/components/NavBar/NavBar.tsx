@@ -8,7 +8,8 @@ import { isMobile } from '../../utils'
 import { ReactComponent as Burger } from '../../assets/icons/menu-burger.svg'
 import { ReactComponent as Phone } from '../../assets/icons/phone.svg'
 import { MobileMenu } from '../MobileMenu/MobileMenu'
-import home from '../../assets/main.jpg'
+import home from '../../assets/home.webp'
+import logo from '../../assets/logo.png'
 
 const NavBarWrapper = styled('div')<{ main: boolean }>(({ main }) => ({
   position: 'relative',
@@ -39,6 +40,7 @@ const NavBarContainer = styled('div')<{ main: boolean }>(({ main }) => ({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
+  position: 'relative',
   width: '100%',
   ...(main && {
     marginTop: 40,
@@ -135,10 +137,20 @@ const NavBarContentActions = styled('div')(() => ({
   marginTop: 60,
 }))
 const NavBarLogo = styled('div')(() => ({
-  fontSize: 30,
-  fontWeight: 700,
-  color: 'white',
-  margin: 8,
+  margin: '0 8px',
+  display: 'flex',
+  alignItems: 'center',
+  width: 66,
+  ...(!isMobile() && {
+    margin: 0,
+    width: 80,
+    position: 'absolute',
+    left: '50%',
+    transform: 'translateX(-50%)',
+  }),
+  '& > img': {
+    width: '100%',
+  },
 }))
 const PhoneIcon = styled(Phone)(() => ({
   color: 'white',
@@ -187,10 +199,15 @@ export const NavBar = () => {
             <StyledNavLink to={Link.contact}>Контакти</StyledNavLink>
           </NavBarLink>
         </NavBarLinks>
+        <NavBarLogo onClick={goToMain}>
+          <img src={logo} alt={'logo'} />
+        </NavBarLogo>
         <NavbarInfo>
           <NavbarInfoContent>
             <NavBarInfoTitle>Автошкола Driving Чабани</NavBarInfoTitle>
-            <NavBarInfoTell href="tel:+380996008008">+380 99 600 80 08</NavBarInfoTell>
+            <NavBarInfoTell href="tel:+380996008008" aria-label={'link-phone'}>
+              +380 99 600 80 08
+            </NavBarInfoTell>
             <p>вул. Машинобудівників, 5д</p>
           </NavbarInfoContent>
           <Button label={'Замовити дзвінок'} modal />
@@ -208,12 +225,14 @@ export const NavBar = () => {
     </NavBarWrapper>
   ) : (
     <MobileNavBarWrapper>
-      <NavBarLogo onClick={goToMain}>DRIVING</NavBarLogo>
+      <NavBarLogo onClick={goToMain}>
+        <img src={logo} alt={'logo'} />
+      </NavBarLogo>
       <MobileNavBarActions>
-        <LinkPhone href="tel:+380996008008">
+        <LinkPhone href="tel:+380996008008" aria-label={'link-phone-mobile'}>
           <PhoneIcon />
         </LinkPhone>
-        <IconButton onClick={handleOpen}>
+        <IconButton onClick={handleOpen} name={'burgerMenu'}>
           <Burger />
         </IconButton>
       </MobileNavBarActions>

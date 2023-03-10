@@ -5,6 +5,7 @@ import { isMobile } from '../../utils'
 import { ReactComponent as Phone } from '../../assets/icons/phone.svg'
 // import { ReactComponent as Email } from '../../assets/icons/email.svg'
 import { ReactComponent as Map } from '../../assets/icons/map.svg'
+import logo from '../../assets/logo.png'
 
 const ContactContainer = styled('div')(() => ({
   display: 'flex',
@@ -22,23 +23,14 @@ const ContactTitle = styled('div')(() => ({
   position: 'relative',
   margin: 40,
 }))
-const ContactSubTitle = styled('div')(() => ({
+const NavBarLogo = styled('div')(() => ({
+  margin: '0 8px',
   display: 'flex',
-  justifyContent: 'center',
   alignItems: 'center',
-  margin: '5px 20px',
-  fontSize: isMobile() ? 16 : 20,
-  fontWeight: 700,
-  color: '#1b1b1b',
-  backgroundColor: '#ffca3e',
-  borderStyle: 'solid',
-  borderWidth: 3,
-  borderRadius: 10,
-  borderColor: '#ffca3e',
-  width: isMobile() ? 300 : 700,
-  height: 50,
-  textTransform: 'uppercase',
-  transform: 'skew(340deg)',
+  width: isMobile() ? 300 : 512,
+  '& > img': {
+    width: '100%',
+  },
 }))
 const ContactItemContainer = styled('div')(() => ({
   display: 'flex',
@@ -85,7 +77,9 @@ export const ContactPage = () => {
   return (
     <ContactContainer>
       <ContactTitle>Контакти</ContactTitle>
-      <ContactSubTitle>Автошкола Driving Чабани</ContactSubTitle>
+      <NavBarLogo>
+        <img src={logo} alt={'logo'} />
+      </NavBarLogo>
       <ContactItemContainer>
         <a href="tel:+380996008008">
           <ContactItem>
@@ -117,6 +111,7 @@ export const ContactPage = () => {
           allowFullScreen={true}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
+          title={'contactMap'}
         ></iframe>
       </ContactIFrame>
     </ContactContainer>
