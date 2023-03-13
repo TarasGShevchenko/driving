@@ -62,6 +62,7 @@ const MapIcon = styled(Map)(() => ({
 const ContactItemText = styled('div')(() => ({
   fontSize: 20,
   fontWeight: 500,
+  textAlign: 'center',
 }))
 const ContactIFrame = styled('div')(() => ({
   width: isMobile() ? 320 : 1000,
@@ -99,12 +100,16 @@ export const ContactPage = () => {
           <IconButton>
             <MapIcon />
           </IconButton>
-          <ContactItemText>вул. Машинобудівників, 5д</ContactItemText>
+          <ContactItemText>
+            вул. Машинобудівників, 5д
+            <br />
+            ТЦ &quot;Chabany Mall&quot;
+          </ContactItemText>
         </ContactItem>
       </ContactItemContainer>
       <ContactIFrame>
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d6286.170272404772!2d30.427339000000003!3d50.342369000000005!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNTDCsDIwJzMyLjUiTiAzMMKwMjUnNDAuNyJF!5e1!3m2!1sru!2sua!4v1678051300815!5m2!1sru!2sua"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1571.5350671179176!2d30.427603!3d50.3425957!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4c951d9e3d669%3A0xac4d8260139cd697!2z0KLQpiDQp9Cw0LHQsNC90Lgg0LzQvtC70Ls!5e1!3m2!1sru!2sua!4v1678740403049!5m2!1sru!2sua"
           width="100%"
           height="100%"
           style={{ border: 0 }}

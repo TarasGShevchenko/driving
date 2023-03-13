@@ -137,7 +137,7 @@ const NavBarContentActions = styled('div')(() => ({
   marginTop: 60,
 }))
 const NavBarLogo = styled('div')(() => ({
-  margin: '0 16px',
+  marginLeft: 16,
   display: 'flex',
   alignItems: 'center',
   width: 66,
@@ -160,6 +160,15 @@ const LinkPhone = styled(LinkMui)(() => ({
   flex: '0 0 auto',
   fontSize: '1.5rem',
   padding: 8,
+}))
+const MobileLogoWrap = styled('div')(() => ({
+  display: 'flex',
+  alignItems: 'flex-end',
+  // padding: 8,
+}))
+const MobileLogoLabel = styled('div')(() => ({
+  fontSize: 12,
+  color: '#FFFFFF',
 }))
 
 export const NavBar = () => {
@@ -226,9 +235,12 @@ export const NavBar = () => {
     </NavBarWrapper>
   ) : (
     <MobileNavBarWrapper>
-      <NavBarLogo onClick={goToMain}>
-        <img src={logo} alt={'logo'} />
-      </NavBarLogo>
+      <MobileLogoWrap>
+        <NavBarLogo onClick={goToMain}>
+          <img src={logo} alt={'logo'} />
+        </NavBarLogo>
+        <MobileLogoLabel>Ми в Чабанах</MobileLogoLabel>
+      </MobileLogoWrap>
       <MobileNavBarActions>
         <LinkPhone href="tel:+380996008008" aria-label={'link-phone-mobile'}>
           <PhoneIcon />
