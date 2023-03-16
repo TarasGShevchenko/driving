@@ -170,6 +170,14 @@ const MobileLogoLabel = styled('div')(() => ({
   fontSize: 12,
   color: '#FFFFFF',
 }))
+const MainSiteName = styled('div')(() => ({
+  fontSize: 46,
+  fontWeight: 600,
+  color: '#ffffff',
+  ...(isMobile() && {
+    fontSize: 39,
+  }),
+}))
 
 export const NavBar = () => {
   const mobileDevice = isMobile()
@@ -225,6 +233,7 @@ export const NavBar = () => {
       </NavBarContainer>
       {main && (
         <NavBarContent>
+          <MainSiteName>Автошкола DRIVING</MainSiteName>
           <NavBarContentTitle>Почніть свій шлях до безпечного та впевненого водіння!</NavBarContentTitle>
           <NavBarContentActions>
             <Button label={'Подивитись ціни'} to={Link.price} isMain />

@@ -42,8 +42,8 @@ const MainContent = styled('div')(() => ({
 }))
 const MainTitle = styled('div')(() => ({
   textAlign: 'center',
-  marginTop: 40,
-  marginBottom: 40,
+  marginTop: 20,
+  marginBottom: 20,
   fontSize: 40,
   fontWeight: 600,
   color: '#ffffff',
@@ -53,7 +53,7 @@ const MainTitle = styled('div')(() => ({
 }))
 const MainActions = styled('div')(() => ({
   textAlign: 'center',
-  marginTop: 60,
+  marginTop: 30,
 }))
 const MainPrices = styled('div')(() => ({
   position: 'relative',
@@ -116,6 +116,17 @@ const AboutContentLink = styled(NavLink)(() => ({
   textDecoration: 'none',
   cursor: 'pointer',
 }))
+const MainSiteName = styled('div')(() => ({
+  textAlign: 'center',
+  marginTop: 60,
+  marginBottom: 10,
+  fontSize: 46,
+  fontWeight: 600,
+  color: '#ffffff',
+  ...(isMobile() && {
+    fontSize: 39,
+  }),
+}))
 
 export const MainPage = () => {
   useEffect(() => {
@@ -126,6 +137,7 @@ export const MainPage = () => {
       {isMobile() && (
         <MainContainer>
           <MainContent>
+            <MainSiteName>Автошкола DRIVING</MainSiteName>
             <MainTitle>Почніть свій шлях до безпечного та впевненого водіння!</MainTitle>
             <MainActions>
               <Button label={'Подивитись ціни'} to={Link.price} isMain />
