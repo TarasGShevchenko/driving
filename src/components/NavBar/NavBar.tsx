@@ -222,11 +222,12 @@ export const NavBar = () => {
         </NavBarLogo>
         <NavbarInfo>
           <NavbarInfoContent>
-            <NavBarInfoTitle>Автошкола Driving Чабани</NavBarInfoTitle>
-            <NavBarInfoTell href="tel:+380996008008" aria-label={'link-phone'}>
-              +380 99 600 80 08
+            <NavBarInfoTitle>Автошкола Driving</NavBarInfoTitle>
+            <NavBarInfoTell href="tel:+380504408800" aria-label={'link-phone'}>
+              +380 50 440 88 00
             </NavBarInfoTell>
-            <p>вул. Машинобудівників, 5д</p>
+            <p>Харьківське шосе, 144-б</p>
+            <p>(ТЦ &apos;Сільпо&apos; 2-й поверх)</p>
           </NavbarInfoContent>
           <Button label={'Замовити дзвінок'} modal />
         </NavbarInfo>

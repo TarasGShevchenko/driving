@@ -169,7 +169,7 @@ export const Footer: FC = () => {
         </Form>
       </FooterForm>
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1273.142332855022!2d30.427603!3d50.3425957!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4c951d9e3d669%3A0xac4d8260139cd697!2z0KLQpiDQp9Cw0LHQsNC90Lgg0LzQvtC70Ls!5e0!3m2!1sru!2sua!4v1678740504640!5m2!1sru!2sua"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d437.0600307523816!2d30.64978857413313!3d50.42136823874502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4c5953c0c5ded%3A0xca85622673f64803!2z0KHRltC70YzQv9C-!5e0!3m2!1suk!2sua!4v1694972845895!5m2!1suk!2sua"
         width="100%"
         height="450"
         style={{ border: 0 }}
@@ -178,7 +178,7 @@ export const Footer: FC = () => {
         referrerPolicy="no-referrer-when-downgrade"
         title={'footerMap'}
       ></iframe>
-      <FooterBottom>&#169;Driving 2023</FooterBottom>
+      <FooterBottom>&#169;Driving {new Date().getFullYear()}</FooterBottom>
     </FooterContainer>
   )
 }

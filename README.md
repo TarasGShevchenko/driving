@@ -1,8 +1,8 @@
-# Driving school "Driving Chabany"
+# Driving school "Driving"
 
-This project was bootstrapped for driving school [Driving Chabany](https://driving-chabany.com.ua).
+This project was bootstrapped for driving school [Driving](https://driving-kiev.com.ua).
 
 ## Home page
 
-Open [https://driving-chabany.com.ua](https://driving-chabany.com.ua) to view it in the browser.
+Open [https://driving-kiev.com.ua](https://driving-kiev.com.ua) to view it in the browser.
 
