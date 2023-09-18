@@ -166,10 +166,10 @@ const MobileLogoWrap = styled('div')(() => ({
   alignItems: 'flex-end',
   // padding: 8,
 }))
-const MobileLogoLabel = styled('div')(() => ({
-  fontSize: 12,
-  color: '#FFFFFF',
-}))
+// const MobileLogoLabel = styled('div')(() => ({
+//   fontSize: 12,
+//   color: '#FFFFFF',
+// }))
 const MainSiteName = styled('div')(() => ({
   fontSize: 46,
   fontWeight: 600,
