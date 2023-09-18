@@ -249,7 +249,7 @@ export const NavBar = () => {
         <NavBarLogo onClick={goToMain}>
           <img src={logo} alt={'logo'} />
         </NavBarLogo>
-        <MobileLogoLabel>Ми в Чабанах</MobileLogoLabel>
+        {/*<MobileLogoLabel>Ми в Чабанах</MobileLogoLabel>*/}
       </MobileLogoWrap>
       <MobileNavBarActions>
         <LinkPhone href="tel:+380996008008" aria-label={'link-phone-mobile'}>
