@@ -144,9 +144,9 @@ const NavBarLogo = styled('div')(() => ({
   ...(!isMobile() && {
     margin: 0,
     width: 80,
-    position: 'absolute',
-    left: '50%',
-    transform: 'translateX(-50%)',
+    // position: 'absolute',
+    // left: '50%',
+    // transform: 'translateX(-50%)',
   }),
   '& > img': {
     width: '100%',
@@ -217,10 +217,10 @@ export const NavBar = () => {
             <StyledNavLink to={Link.contact}>Контакти</StyledNavLink>
           </NavBarLink>
         </NavBarLinks>
-        <NavBarLogo onClick={goToMain}>
-          <img src={logo} alt={'logo'} />
-        </NavBarLogo>
         <NavbarInfo>
+          <NavBarLogo onClick={goToMain}>
+            <img src={logo} alt={'logo'} />
+          </NavBarLogo>
           <NavbarInfoContent>
             <NavBarInfoTitle>Автошкола Driving</NavBarInfoTitle>
             <NavBarInfoTell href="tel:+380504408800" aria-label={'link-phone'}>

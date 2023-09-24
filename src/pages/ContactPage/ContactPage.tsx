@@ -5,7 +5,7 @@ import { isMobile } from '../../utils'
 import { ReactComponent as Phone } from '../../assets/icons/phone.svg'
 // import { ReactComponent as Email } from '../../assets/icons/email.svg'
 import { ReactComponent as Map } from '../../assets/icons/map.svg'
-import logo from '../../assets/logo.png'
+import logo from '../../assets/logoContact.png'
 
 const ContactContainer = styled('div')(() => ({
   display: 'flex',
