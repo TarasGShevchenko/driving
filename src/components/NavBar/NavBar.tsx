@@ -252,7 +252,7 @@ export const NavBar = () => {
         {/*<MobileLogoLabel>Ми в Чабанах</MobileLogoLabel>*/}
       </MobileLogoWrap>
       <MobileNavBarActions>
-        <LinkPhone href="tel:+380996008008" aria-label={'link-phone-mobile'}>
+        <LinkPhone href="tel:+380504408800" aria-label={'link-phone-mobile'}>
           <PhoneIcon />
         </LinkPhone>
         <IconButton onClick={handleOpen} name={'burgerMenu'} aria-label={'burger menu'}>
