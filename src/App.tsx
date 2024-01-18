@@ -10,6 +10,7 @@ import { PricePage } from './pages/PricePage'
 import { IndividuallyPage } from './pages/IndividuallyPage'
 import { AboutPage } from './pages/AboutPage'
 import { ContactPage } from './pages/ContactPage'
+import { ThankYouPage } from './pages/ThankYouPage'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path={Link.individually} element={<IndividuallyPage />} />
         <Route path={Link.about} element={<AboutPage />} />
         <Route path={Link.contact} element={<ContactPage />} />
+        <Route path={Link.thankYouPage} element={<ThankYouPage />} />
       </Routes>
       <ToastContainer />
     </Layout>

@@ -4,10 +4,11 @@ import footerImage from '../../assets/footer.webp'
 import { isMobile } from '../../utils'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
+import { Link } from '../../enums'
 
 const FooterContainer = styled('footer')(() => ({
   width: '100%',
-  marginTop: 100,
 }))
 const FooterForm = styled('div')(() => ({
   display: 'flex',
@@ -93,6 +94,8 @@ const FooterBottom = styled('div')(() => ({
 }))
 
 export const Footer: FC = () => {
+  const history = useNavigate()
+
   const [name, setName] = useState('')
   const [tell, setTell] = useState('')
 
@@ -135,13 +138,16 @@ export const Footer: FC = () => {
             text: mail,
           })
           .then((res) => {
-            res.status === 200
-              ? toast.success('Ваш запит відправлено', { theme: 'colored' })
-              : toast.error('Помилка! Спробуйте зателефонувати нам.', { theme: 'colored' })
+            if (res.status === 200) {
+              toast.success('Ваш запит відправлено', { theme: 'colored' })
+              history(Link.thankYouPage)
+            } else {
+              toast.error('Помилка! Спробуйте зателефонувати нам.', { theme: 'colored' })
+            }
           })
       }
     },
-    [name, tell],
+    [name, tell, history],
   )
 
   return (

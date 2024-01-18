@@ -3,6 +3,7 @@ import { styled } from '@mui/material'
 
 import { NavBar } from '../NavBar'
 import { Footer } from '../Footer'
+import { isMobile } from '../../utils'
 
 const LayoutContainer = styled('div')(() => ({
   width: '100%',
@@ -12,6 +13,7 @@ const LayoutContainer = styled('div')(() => ({
 const Content = styled('div')(() => ({
   maxWidth: 1320,
   margin: 'auto',
+  ...(!isMobile() && { marginBottom: 100 }),
 }))
 
 export const Layout: FC<{ children: ReactNode }> = ({ children }) => (

@@ -4,4 +4,5 @@ export enum Link {
   individually = '/individually',
   about = '/about',
   contact = '/contact',
+  thankYouPage = 'thank-you-page',
 }

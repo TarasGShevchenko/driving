@@ -3,6 +3,8 @@ import { Modal, styled, TextField, Button } from '@mui/material'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { isMobile } from '../../utils'
+import { useNavigate } from 'react-router-dom'
+import { Link } from '../../enums'
 
 interface ModalProps {
   open: boolean
@@ -41,6 +43,8 @@ const FormButton = styled(Button)(() => ({
 }))
 
 export const ModalPopup: FC<ModalProps> = ({ open, closeModal }) => {
+  const history = useNavigate()
+
   const [name, setName] = useState('')
   const [tell, setTell] = useState('')
 
@@ -91,13 +95,14 @@ export const ModalPopup: FC<ModalProps> = ({ open, closeModal }) => {
             if (res.status === 200) {
               toast.success('Ваш запит відправлено', { theme: 'colored' })
               closeModal(false)
+              history(Link.thankYouPage)
             } else {
               toast.error('Помилка! Спробуйте зателефонувати нам.', { theme: 'colored' })
             }
           })
       }
     },
-    [closeModal, name, tell],
+    [closeModal, name, tell, history],
   )
 
   return (
