@@ -155,7 +155,7 @@ export const Footer: FC = () => {
       <FooterForm>
         <FooterOverlay />
         <FooterFormContent>
-          <FooterFormContentTitle>
+          <FooterFormContentTitle lang={'uk'}>
             Заповнюй форму і ми зв&apos;яжемось з тобою в найкоротші терміни!
           </FooterFormContentTitle>
         </FooterFormContent>
