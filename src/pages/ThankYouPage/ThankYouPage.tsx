@@ -31,6 +31,7 @@ const ThankYouButton = styled('button')(() => ({
   fontWeight: 500,
   lineHeight: 1,
   fontSize: 15,
+  color: '1B1B1B',
   '&:hover': {
     backgroundColor: '#ffca3e',
     color: 'black',
