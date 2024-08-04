@@ -62,7 +62,7 @@ const CardPriceCenter = styled('ul')(() => ({
   }),
 }))
 const CardPriceCenterItem = styled('li')(() => ({
-  padding: 8,
+  padding: '8px 24px',
   listStyle: 'none',
   '& > svg': {
     margin: '4px 12px 0 0',
@@ -89,7 +89,7 @@ export const CardPrice: FC<Card> = ({ name, price, description }) => {
           if (i === 0 || i === 1) return null
           return (
             <CardPriceCenterItem key={i}>
-              <CardPricePoint />
+              {item.length > 0 && <CardPricePoint />}
               &nbsp;{item}
             </CardPriceCenterItem>
           )
