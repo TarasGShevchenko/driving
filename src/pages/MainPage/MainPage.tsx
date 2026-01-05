@@ -18,7 +18,10 @@ const MainContainer = styled('div')(() => ({
     backgroundPositionX: '65%',
   }),
   width: '100%',
-  height: 700,
+  minHeight: '100vh',
+  paddingTop: 'env(safe-area-inset-top)',
+  paddingBottom: 'env(safe-area-inset-bottom)',
+
   '&:after': {
     content: '""',
     width: '100%',
@@ -33,20 +36,18 @@ const MainContainer = styled('div')(() => ({
 const MainContent = styled('div')(() => ({
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
   alignItems: 'center',
-  padding: 10,
-  height: 'inherit',
+  padding: '80px 16px 40px',
   position: 'sticky',
   zIndex: 2,
 }))
-const MainTitle = styled('div')(() => ({
+const MainTitle = styled('div')<{ bold?: boolean }>(({ bold }) => ({
   textAlign: 'center',
   marginTop: 20,
   marginBottom: 20,
   fontSize: 40,
-  fontWeight: 600,
-  color: '#ffffff',
+  fontWeight: bold ? 700 : 600,
+  color: bold ? 'red' : '#ffffff',
   ...(isMobile() && {
     fontSize: 39,
   }),
@@ -128,6 +129,18 @@ const MainSiteName = styled('div')(() => ({
   }),
 }))
 
+const MainSubtitle = styled('div')(() => ({
+  textAlign: 'center',
+  fontSize: 14,
+  color: '#ffffff',
+  opacity: 0.7,
+  marginTop: 4,
+  marginBottom: 12,
+  ...(isMobile() && {
+    fontSize: 13,
+  }),
+}))
+
 export const MainPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -139,6 +152,8 @@ export const MainPage = () => {
           <MainContent>
             <MainSiteName>Автошкола DRIVING</MainSiteName>
             <MainTitle>Почніть свій шлях до безпечного та впевненого водіння!</MainTitle>
+            <MainTitle bold>Запишись зараз зі знижкою 4000!</MainTitle>
+            <MainSubtitle>Акція діє до 15.02.2026</MainSubtitle>
             <MainActions>
               <Button label={'Подивитись ціни'} to={Link.price} isMain />
               <Button label={'Замовити двінок'} modal isMain />
@@ -155,8 +170,8 @@ export const MainPage = () => {
       <Title>Наші тарифи</Title>
       <MainPrices>
         <CardPriceWrapper>
-          {cards.map(({ name, price, description }, i) => (
-            <CardPrice key={i} name={name} price={price} description={description} />
+          {cards.map(({ name, price, description, sale }, i) => (
+            <CardPrice key={i} name={name} price={price} description={description} sale={sale} />
           ))}
         </CardPriceWrapper>
       </MainPrices>

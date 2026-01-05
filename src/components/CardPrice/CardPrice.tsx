@@ -46,15 +46,16 @@ const CardPriceTopName = styled('div')(() => ({
   transform: 'skew(340deg)',
   textAlign: 'center',
 }))
-const CardPriceTopPrice = styled('div')(() => ({
+const CardPriceTopPrice = styled('div')<{ through?: boolean }>(({ through }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   margin: '5px 20px',
-  fontSize: 40,
+  fontSize: through ? 32 : 40,
   fontWeight: 600,
   fontStyle: 'italic',
-  color: '#800000',
+  color: through ? '#800000' : 'red',
+  ...(through && { textDecoration: 'line-through' }),
 }))
 const CardPriceCenter = styled('ul')(() => ({
   ...(isMobile() && {
@@ -68,22 +69,45 @@ const CardPriceCenterItem = styled('li')(() => ({
     margin: '4px 12px 0 0',
   },
 }))
+const PriceText = styled('span')(() => ({
+  color: 'red',
+  fontWeight: 700,
+}))
 
-export const CardPrice: FC<Card> = ({ name, price, description }) => {
+const renderWithPrice = (text: string) => {
+  const priceRegex = /(\d+\s*грн)/i
+  const match = text.match(priceRegex)
+
+  if (!match) return text
+
+  const [price] = match
+  const [before, after] = text.split(price)
+
+  return (
+    <>
+      {before}
+      <PriceText>{price}</PriceText>
+      {after}
+    </>
+  )
+}
+
+export const CardPrice: FC<Card> = ({ name, price, description, sale }) => {
   return (
     <CardPriceContainer>
       <CardPriceTop>
         <CardPriceTopName>{name}</CardPriceTopName>
-        <CardPriceTopPrice>{price}</CardPriceTopPrice>
+        <CardPriceTopPrice through>{price}</CardPriceTopPrice>
+        <CardPriceTopPrice>{sale}</CardPriceTopPrice>
       </CardPriceTop>
       <CardPriceCenter>
         <CardPriceCenterItem>
           <CardPricePoint />
-          &nbsp;<strong>{description[0]}</strong>
+          &nbsp;<strong>{renderWithPrice(description[0])}</strong>
         </CardPriceCenterItem>
         <CardPriceCenterItem>
           <CardPricePoint />
-          &nbsp;<strong>{description[1]}</strong>
+          &nbsp;<strong>{renderWithPrice(description[1])}</strong>
         </CardPriceCenterItem>
         {description.map((item, i) => {
           if (i === 0 || i === 1) return null
