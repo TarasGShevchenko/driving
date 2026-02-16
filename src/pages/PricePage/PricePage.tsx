@@ -45,8 +45,8 @@ export const PricePage = () => {
     <PriceContainer>
       <PriceTitle>Наші тарифи</PriceTitle>
       <CardPriceWrapper>
-        {cards.map(({ name, price, description, sale }, i) => (
-          <CardPrice key={i} name={name} price={price} description={description} sale={sale} />
+        {cards.map(({ name, price, description }, i) => (
+          <CardPrice key={i} name={name} price={price} description={description} />
         ))}
       </CardPriceWrapper>
       <MainPricesText>

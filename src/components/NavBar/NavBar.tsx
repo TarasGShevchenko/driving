@@ -121,13 +121,13 @@ const NavBarContent = styled('div')(() => ({
   height: '100%',
   zIndex: 2,
 }))
-const NavBarContentTitle = styled('div')<{ bold?: boolean }>(({ bold }) => ({
+const NavBarContentTitle = styled('div')(() => ({
   textAlign: 'center',
   marginTop: 40,
   marginBottom: 40,
   fontSize: 40,
-  fontWeight: bold ? 700 : 600,
-  color: bold ? 'red' : '#ffffff',
+  fontWeight: 600,
+  color: '#ffffff',
   ...(isMobile() && {
     fontSize: 39,
   }),
@@ -176,16 +176,6 @@ const MainSiteName = styled('div')(() => ({
   color: '#ffffff',
   ...(isMobile() && {
     fontSize: 39,
-  }),
-}))
-const NavBarSubtitle = styled('div')(() => ({
-  textAlign: 'center',
-  fontSize: 14,
-  color: '#ffffff',
-  opacity: 0.7,
-  marginTop: -20,
-  ...(isMobile() && {
-    fontSize: 13,
   }),
 }))
 
@@ -246,8 +236,6 @@ export const NavBar = () => {
         <NavBarContent>
           <MainSiteName>Автошкола DRIVING</MainSiteName>
           <NavBarContentTitle>Почніть свій шлях до безпечного та впевненого водіння!</NavBarContentTitle>
-          <NavBarContentTitle bold>Запишись зараз зі знижкою 4000!</NavBarContentTitle>
-          <NavBarSubtitle>Акція діє до 15.02.2026</NavBarSubtitle>
           <NavBarContentActions>
             <Button label={'Подивитись ціни'} to={Link.price} isMain />
             <Button label={'Замовити двінок'} modal isMain />
