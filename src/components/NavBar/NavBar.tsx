@@ -4,9 +4,10 @@ import { Drawer, IconButton, styled, Link as LinkMui } from '@mui/material'
 
 import { Button } from '../Button'
 import { Link } from '../../enums'
-import { isMobile } from '../../utils'
+import { goToInstagram, isMobile } from '../../utils'
 import { ReactComponent as Burger } from '../../assets/icons/menu-burger.svg'
 import { ReactComponent as Phone } from '../../assets/icons/phone.svg'
+import { ReactComponent as Instagram } from '../../assets/icons/instagram.svg'
 import { MobileMenu } from '../MobileMenu/MobileMenu'
 import home from '../../assets/home.webp'
 import logo from '../../assets/logo.png'
@@ -156,6 +157,9 @@ const NavBarLogo = styled('div')(() => ({
 const PhoneIcon = styled(Phone)(() => ({
   color: 'white',
 }))
+const InstagramIcon = styled(Instagram)(() => ({
+  color: 'white',
+}))
 const LinkPhone = styled(LinkMui)(() => ({
   flex: '0 0 auto',
   fontSize: '1.5rem',
@@ -255,6 +259,9 @@ export const NavBar = () => {
         <LinkPhone href="tel:+380504408800" aria-label={'link-phone-mobile'}>
           <PhoneIcon />
         </LinkPhone>
+        <IconButton onClick={goToInstagram} name={'instagram'} aria-label={'instagram'}>
+          <InstagramIcon />
+        </IconButton>
         <IconButton onClick={handleOpen} name={'burgerMenu'} aria-label={'burger menu'}>
           <Burger />
         </IconButton>

@@ -7,3 +7,14 @@ export const isMobile = (): boolean => {
   const md = new MobileDetect(window.navigator.userAgent)
   return !!md.mobile() || !!md.versionStr('Mobile')
 }
+
+export const goToInstagram = () => {
+  const mobileDevice = isMobile()
+  const instagramWebUrl = process.env.REACT_APP_INSTAGRAM_URL
+
+  if (mobileDevice) {
+    if (instagramWebUrl) window.location.href = instagramWebUrl
+  } else {
+    window.open(instagramWebUrl, '_blank', 'noopener,noreferrer')
+  }
+}

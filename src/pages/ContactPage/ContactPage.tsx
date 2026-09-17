@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { IconButton, styled } from '@mui/material'
 
-import { isMobile } from '../../utils'
+import { goToInstagram, isMobile } from '../../utils'
 import { ReactComponent as Phone } from '../../assets/icons/phone.svg'
-// import { ReactComponent as Email } from '../../assets/icons/email.svg'
+import { ReactComponent as Instagram } from '../../assets/icons/instagram.svg'
 import { ReactComponent as Map } from '../../assets/icons/map.svg'
 import logo from '../../assets/logoContact.png'
 
@@ -53,9 +53,9 @@ const ContactItem = styled('div')(() => ({
 const PhoneIcon = styled(Phone)(() => ({
   color: '#ffca3e',
 }))
-// const EmailIcon = styled(Email)(() => ({
-//   color: '#ffca3e',
-// }))
+const InstagramIcon = styled(Instagram)(() => ({
+  color: '#ffca3e',
+}))
 const MapIcon = styled(Map)(() => ({
   color: '#ffca3e',
 }))
@@ -90,12 +90,12 @@ export const ContactPage = () => {
             <ContactItemText>+38 050 440 88 00</ContactItemText>
           </ContactItem>
         </a>
-        {/*<ContactItem>*/}
-        {/*  <IconButton>*/}
-        {/*    <EmailIcon />*/}
-        {/*  </IconButton>*/}
-        {/*  <ContactItemText>sashapasha@gmail.com</ContactItemText>*/}
-        {/*</ContactItem>*/}
+        <ContactItem>
+          <IconButton onClick={goToInstagram}>
+            <InstagramIcon />
+          </IconButton>
+          <ContactItemText>Instagram</ContactItemText>
+        </ContactItem>
         <ContactItem>
           <IconButton>
             <MapIcon />
