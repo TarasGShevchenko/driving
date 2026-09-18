@@ -49,7 +49,28 @@ const MainTitle = styled('div')(() => ({
   fontWeight: 600,
   color: '#ffffff',
   ...(isMobile() && {
-    fontSize: 39,
+    fontSize: 32,
+  }),
+}))
+const PromoBadge = styled('div')(() => ({
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: '#ffca3e',
+  color: '#1b1b1b',
+  fontWeight: 700,
+  fontSize: 15,
+  padding: '6px 16px',
+  borderRadius: 30,
+  marginBottom: 10,
+  boxShadow: '0 4px 15px rgba(255, 202, 62, 0.4)',
+  textTransform: 'uppercase',
+  letterSpacing: 0.5,
+  textAlign: 'center',
+  ...(isMobile() && {
+    fontSize: 12,
+    padding: '10px',
+    marginBottom: 8,
   }),
 }))
 const MainActions = styled('div')(() => ({
@@ -140,6 +161,7 @@ export const MainPage = () => {
           <MainContent>
             <MainSiteName>Автошкола DRIVING</MainSiteName>
             <MainTitle>Почніть свій шлях до безпечного та впевненого водіння!</MainTitle>
+            <PromoBadge>🎁 Спеціальна пропозиція: Безкоштовне навчання теорії для підлітків 16–17 років</PromoBadge>
             <MainActions>
               <Button label={'Подивитись ціни'} to={Link.price} isMain />
               <Button label={'Замовити двінок'} modal isMain />

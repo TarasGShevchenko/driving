@@ -106,7 +106,27 @@ const MobileNavBarWrapper = styled('div')(() => ({
   zIndex: 9999,
   width: '100%',
 }))
-
+const PromoBadge = styled('div')(() => ({
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: '#ffca3e',
+  color: '#1b1b1b',
+  fontWeight: 700,
+  fontSize: 16,
+  padding: '8px 20px',
+  borderRadius: 30,
+  marginBottom: 20,
+  boxShadow: '0 4px 15px rgba(255, 202, 62, 0.4)',
+  textTransform: 'uppercase',
+  letterSpacing: 0.5,
+  ...(isMobile() && {
+    fontSize: 13,
+    padding: '6px 14px',
+    marginBottom: 16,
+    textAlign: 'center',
+  }),
+}))
 const MobileNavBarActions = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'space-between',
@@ -240,6 +260,7 @@ export const NavBar = () => {
         <NavBarContent>
           <MainSiteName>Автошкола DRIVING</MainSiteName>
           <NavBarContentTitle>Почніть свій шлях до безпечного та впевненого водіння!</NavBarContentTitle>
+          <PromoBadge>🎁 Спеціальна пропозиція: Безкоштовне навчання теорії для підлітків 16–17 років</PromoBadge>
           <NavBarContentActions>
             <Button label={'Подивитись ціни'} to={Link.price} isMain />
             <Button label={'Замовити двінок'} modal isMain />
